@@ -3,15 +3,15 @@ import {
   View, TextInput, Text, ScrollView, Image, Button, Animated, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Vibration,
   TouchableHighlight
 } from 'react-native';
+
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from './styles';
-import logo from './logo.png';
+import logo from './assets/logo.png';
 import { LinearGradient } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
-class Demo extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
-
     this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
   }
 
@@ -62,15 +62,8 @@ class Demo extends Component {
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
         <LinearGradient
-          colors={['#00c6ff', '#0072ff']}
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            height: '100%',
-            alignItems: 'center'
-          }}
+          colors={['#134e5e', '#71b280']}
+          style={styles.linearGradientContainer}
         >
           <Animated.Image source={logo} style={[styles.logo, { height: this.imageHeight }]} />
           <ScrollView style={{ flex: 1 }}>
@@ -78,8 +71,8 @@ class Demo extends Component {
               style={styles.container}
               behavior="padding"
             >
-              <View style={{ flex: 1, padding: 10, flexDirection: 'row', borderColor: 'white', borderRadius: 50, borderWidth: 1, marginLeft: 10, marginRight: 10, marginBottom: 10 }}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={styles.viewInput}>
+                <View style={styles.icon}>
                   <Ionicons name="md-person" size={32} color="white" />
                 </View>
                 <View style={{ flex: 5 }}>
@@ -87,42 +80,43 @@ class Demo extends Component {
                     underlineColorAndroid='transparent'
                     style={styles.input}
                     placeholder="Username"
-                    placeholderTextColor="white"
+                    placeholderTextColor="rgba(255,255,255,.5)"
+                    onSubmitEditing={(event) => {
+                      this.refs.password.focus();
+                    }}
                   />
                 </View>
               </View>
-              <View style={{ flex: 1, padding: 10, flexDirection: 'row', borderColor: 'white', borderRadius: 50, borderWidth: 1, marginLeft: 10, marginRight: 10, marginBottom: 10 }}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={styles.viewInput}>
+                <View style={styles.icon}>
                   <Ionicons name="md-lock" size={32} color="white" />
                 </View>
                 <View style={{ flex: 5 }}>
                   <TextInput
+                    secureTextEntry={true}
                     underlineColorAndroid='transparent'
                     style={styles.input}
                     placeholder="Password"
-                    placeholderTextColor="white"
+                    placeholderTextColor="rgba(255,255,255,.5)"
+                    ref='password'
                   />
                 </View>
               </View>
               <View>
-                <TouchableOpacity style={styles.register}><Text>Done</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.register} color="white">
+                  <Text style={{ color: "#71b280", fontSize: 20 }}>Login</Text>
+                </TouchableOpacity>
               </View>
-
-
-
               <TextInput
                 underlineColorAndroid='transparent'
                 style={styles.input}
-                placeholder="Enter password"
                 placeholderTextColor="white"
               />
             </KeyboardAvoidingView>
           </ScrollView>
         </LinearGradient>
       </View>
-
     );
   }
 };
-
-export default Demo;
+export default Login;

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {
   View, TextInput, Text, ScrollView, Image, Button, Animated, TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Vibration,
-  TouchableHighlight
+  TouchableHighlight, Dimensions
 } from 'react-native';
 
+const window = Dimensions.get('window');
+const width = window.width;
+const height = window.height;
+
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from './styles';
-import logo from './assets/logo.png';
+import logo from './assets/wb-logo.png';
+import bg from './assets/bg.png';
 import { LinearGradient } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -32,10 +37,10 @@ class Login extends Component {
   }
 
   keyboardWillShow = (event) => {
-    Animated.timing(this.imageHeight, {
-      duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL,
-    }).start();
+    // Animated.timing(this.imageHeight, {
+    //   duration: event.duration,
+    //   toValue: IMAGE_HEIGHT_SMALL,
+    // }).start();
   };
 
   keyboardWillHide = (event) => {
@@ -48,21 +53,34 @@ class Login extends Component {
 
   keyboardDidShow = (event) => {
     Animated.timing(this.imageHeight, {
-      toValue: IMAGE_HEIGHT_SMALL,
+      duration: 300,
+      toValue: width / 3,
     }).start();
   };
 
   keyboardDidHide = (event) => {
     Animated.timing(this.imageHeight, {
+      duration: 300,
       toValue: IMAGE_HEIGHT,
     }).start();
   };
-
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{
+          flex: 1,
+          alignItems: 'stretch'
+        }}>
+          <Image
+            source={bg}
+            style={{ flex: 1, height: height, width: width }}>
+          </Image>
+        </View>
+
         <LinearGradient
-          colors={['#134e5e', '#71b280']}
+          colors={['rgba(68, 160, 141,1)', 'rgba(9, 54, 55,1)']}
+          // colors={['#44A08D', '#093637']}
+          // colors={['#134e5e', '#71b280']}
           style={styles.linearGradientContainer}
         >
           <Animated.Image source={logo} style={[styles.logo, { height: this.imageHeight }]} />
@@ -81,6 +99,8 @@ class Login extends Component {
                     style={styles.input}
                     placeholder="Username"
                     placeholderTextColor="rgba(255,255,255,.5)"
+                    returnKeyType="next"
+                    returnKeyLabel="next"
                     onSubmitEditing={(event) => {
                       this.refs.password.focus();
                     }}
@@ -98,23 +118,20 @@ class Login extends Component {
                     style={styles.input}
                     placeholder="Password"
                     placeholderTextColor="rgba(255,255,255,.5)"
+                    returnKeyType="next"
                     ref='password'
                   />
                 </View>
               </View>
-              <View>
-                <TouchableOpacity style={styles.register} color="white">
-                  <Text style={{ color: "#71b280", fontSize: 20 }}>Login</Text>
+              <View style={styles.viewTouchableOpacity}>
+                <TouchableOpacity style={styles.register} underlayColor={'gray'}>
+                  <Text style={{ color: "white", fontSize: 20 }}>Login</Text>
                 </TouchableOpacity>
               </View>
-              <TextInput
-                underlineColorAndroid='transparent'
-                style={styles.input}
-                placeholderTextColor="white"
-              />
             </KeyboardAvoidingView>
           </ScrollView>
         </LinearGradient>
+
       </View>
     );
   }

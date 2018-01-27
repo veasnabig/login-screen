@@ -28,6 +28,13 @@ export default StyleSheet.create({
     marginRight: 10,
     marginBottom: 10
   },
+  viewTouchableOpacity: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10
+  },
   icon: {
     flex: 1, alignItems: 'center', justifyContent: 'center'
   },
@@ -53,8 +60,8 @@ export default StyleSheet.create({
     width: window.width - 30,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 55,
-    backgroundColor: 'rgba(255,255,255,.8)',
+    height: 50,
+    backgroundColor: 'rgba(68, 160, 141,0.8)',
     borderRadius: 50,
   },
   inputsContainer: {

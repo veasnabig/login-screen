@@ -1,14 +1,14 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const window = Dimensions.get('window');
 
-export const IMAGE_HEIGHT = window.width / 2;
+export const IMAGE_HEIGHT = window.width / 2.5;
 export const IMAGE_HEIGHT_SMALL = window.width / 4;
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   linearGradientContainer: {
     position: 'absolute',
@@ -21,9 +21,10 @@ export default StyleSheet.create({
   viewInput: {
     flex: 1,
     flexDirection: 'row',
-    borderColor: 'white',
+    // borderColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: 50,
-    borderWidth: 1,
+    // borderWidth: 1,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10
@@ -51,7 +52,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 20,
     padding: 10,
-    marginTop: IMAGE_HEIGHT_SMALL,
+    marginTop: 60,
     alignItems: 'center',
     justifyContent: 'center'
   },
